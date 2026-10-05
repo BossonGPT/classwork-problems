@@ -11,10 +11,29 @@
 //if you want it to be odd, and its even, add 1
 //
 
+function giveEvenNumber() {
+  const randomNumber = Math.random();
+  const highestPlace = 100; // it is not the highest place
+
+  const number = Math.round(randomNumber * highestPlace) * 2;
+  return number;
+}
+
+function giveOddNumber() {
+  const randomNumber = Math.random();
+  const highestPlace = 100; // it is not the highest place
+
+  const inbetweenNumber = Math.round(highestPlace * randomNumber);
+  const number =
+    inbetweenNumber % 2 == 0 ? inbetweenNumber + 1 : inbetweenNumber;
+  return number;
+}
+
 function happyAlpacas(N, X) {
   let alpacaHappinessIndex = [];
 
-  let beginningNumber = N > X ? 13 : 12;
+  let beginningNumber = X % 2 == 0 ? giveOddNumber() : giveEvenNumber();
+
   let happyAlpacas = 0;
   for (let alpaca = 0; alpaca < N - 1; alpaca++) {
     const lastNumber =
@@ -24,9 +43,9 @@ function happyAlpacas(N, X) {
     if (happyAlpacas < X) {
       // if it is odd
       if (lastNumber % 2 != 0) {
-        alpacaHappinessIndex[alpaca] = lastNumber + 1;
+        alpacaHappinessIndex[alpaca] = giveOddNumber();
       } else if (lastNumber % 2 == 0) {
-        alpacaHappinessIndex[alpaca] = lastNumber + 2;
+        alpacaHappinessIndex[alpaca] = giveEvenNumber();
       }
 
       happyAlpacas++;
@@ -37,9 +56,9 @@ function happyAlpacas(N, X) {
     if (happyAlpacas >= X) {
       // if it is odd
       if (lastNumber % 2 != 0) {
-        alpacaHappinessIndex[alpaca] = lastNumber + 2;
+        alpacaHappinessIndex[alpaca] = giveEvenNumber();
       } else if (lastNumber % 2 == 0) {
-        alpacaHappinessIndex[alpaca] = lastNumber + 1;
+        alpacaHappinessIndex[alpaca] = giveOddNumber();
       }
     }
   }
@@ -49,4 +68,4 @@ function happyAlpacas(N, X) {
   return alpacaHappinessIndex;
 }
 
-console.log(happyAlpacas(6, 6));
+console.log(happyAlpacas(6, 4));
