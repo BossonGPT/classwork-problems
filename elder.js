@@ -36,5 +36,5 @@ function elder(originalMaster, numberOfDuels, duels) {
 elder("A", 3, [
   ["B", "A"],
   ["C", "B"],
-  ["D", "A"]
+  ["D", "A"],
 ]).forEach((x) => console.log(x));
